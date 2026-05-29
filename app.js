@@ -39,6 +39,15 @@ function formatDate(dateStr) {
   });
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function renderSchedule() {
   const entries = getUpcomingEntries();
   const container = document.getElementById('schedule-list');
@@ -57,11 +66,11 @@ function renderSchedule() {
     return `
       <div class="card">
         <div class="card-header">
-          <span class="card-date">${formatDate(e.date)} &bull; ${e.time}</span>
+          <span class="card-date">${escapeHtml(formatDate(e.date))} &bull; ${escapeHtml(e.time)}</span>
           <span class="badge ${badgeClass}">${badgeLabel}</span>
         </div>
         <div class="card-body">
-          <div class="card-location">${e.location}</div>
+          <div class="card-location">${escapeHtml(e.location)}</div>
           <div class="card-games">Target: ${e.gamesTarget} game${e.gamesTarget !== 1 ? 's' : ''}</div>
         </div>
       </div>
