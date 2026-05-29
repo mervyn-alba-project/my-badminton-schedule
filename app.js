@@ -79,3 +79,21 @@ function renderSchedule() {
 }
 
 document.addEventListener('DOMContentLoaded', renderSchedule);
+
+document.getElementById('add-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const form = e.target;
+
+  const entry = {
+    id: Date.now().toString(),
+    date: form.date.value,
+    time: form.time.value,
+    location: form.location.value.trim(),
+    gamesTarget: parseInt(form.gamesTarget.value, 10),
+    outcome: form.outcome.value
+  };
+
+  addEntry(entry);
+  renderSchedule();
+  form.reset();
+});
