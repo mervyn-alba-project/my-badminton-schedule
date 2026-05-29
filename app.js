@@ -1,7 +1,11 @@
 const STORAGE_KEY = 'badminton-schedule';
 
 function loadSchedule() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch {
+    return [];
+  }
 }
 
 function saveSchedule(entries) {
@@ -71,29 +75,31 @@ function renderSchedule() {
         </div>
         <div class="card-body">
           <div class="card-location">${escapeHtml(e.location)}</div>
-          <div class="card-games">Target: ${e.gamesTarget} game${e.gamesTarget !== 1 ? 's' : ''}</div>
+          <div class="card-games">Target: ${escapeHtml(e.gamesTarget)} game${e.gamesTarget !== 1 ? 's' : ''}</div>
         </div>
       </div>
     `;
   }).join('');
 }
 
-document.addEventListener('DOMContentLoaded', renderSchedule);
-
-document.getElementById('add-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const form = e.target;
-
-  const entry = {
-    id: Date.now().toString(),
-    date: form.date.value,
-    time: form.time.value,
-    location: form.location.value.trim(),
-    gamesTarget: parseInt(form.gamesTarget.value, 10),
-    outcome: form.outcome.value
-  };
-
-  addEntry(entry);
+document.addEventListener('DOMContentLoaded', function () {
   renderSchedule();
-  form.reset();
+
+  document.getElementById('add-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+
+    const entry = {
+      id: Date.now().toString(),
+      date: form.date.value,
+      time: form.time.value,
+      location: form.location.value.trim(),
+      gamesTarget: parseInt(form.gamesTarget.value, 10),
+      outcome: form.outcome.value
+    };
+
+    addEntry(entry);
+    renderSchedule();
+    form.reset();
+  });
 });
