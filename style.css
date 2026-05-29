@@ -1,1 +1,151 @@
-/* styles added in Task 5 */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+header {
+  background: #16213e;
+  color: #fff;
+  padding: 1.25rem 2rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #16213e;
+}
+
+/* Form */
+.form-section {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  gap: 0.3rem;
+}
+
+input, select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: #fafafa;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #0f3460;
+}
+
+button[type="submit"] {
+  grid-column: 1 / -1;
+  padding: 0.65rem;
+  background: #0f3460;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+button[type="submit"]:hover {
+  background: #16213e;
+}
+
+/* Schedule cards */
+.schedule-section {
+  display: flex;
+  flex-direction: column;
+}
+
+#schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-date {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.card-body {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* Outcome badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-win      { background: #d4edda; color: #155724; }
+.badge-loss     { background: #f8d7da; color: #721c24; }
+.badge-draw     { background: #e2e3e5; color: #383d41; }
+.badge-upcoming { background: #fff3cd; color: #856404; }
+
+@media (max-width: 480px) {
+  form { grid-template-columns: 1fr; }
+}
