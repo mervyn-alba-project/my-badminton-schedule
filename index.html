@@ -4,51 +4,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Badminton Schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62.5..125,400..900;1,62.5..125,400..800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>My Badminton Schedule</h1>
+
+  <header class="bar">
+    <div class="bar-inner">
+      <div class="brand">
+        <div class="shuttle"><span>🏸</span></div>
+        <div class="wordmark">
+          <span class="kick" aria-hidden="true">Match Tracker</span>
+          <h1>My Badminton Schedule</h1>
+        </div>
+      </div>
+      <div class="bar-meta">
+        <div class="meta-chip">
+          <span class="num" id="stat-upcoming">00</span>
+          <span class="lbl">Upcoming</span>
+        </div>
+        <div class="meta-chip">
+          <span class="num" id="stat-record">0–0</span>
+          <span class="lbl">Record</span>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="form-section">
-      <h2>Add Session</h2>
-      <form id="add-form">
-        <label>
-          Date
-          <input type="date" name="date" required />
-        </label>
-        <label>
-          Time
-          <input type="time" name="time" required />
-        </label>
-        <label>
-          Location
-          <input type="text" name="location" placeholder="e.g. Sports Hall Court A" required />
-        </label>
-        <label>
-          Games Target
-          <input type="number" name="gamesTarget" min="1" value="5" required />
-        </label>
-        <label>
-          Outcome
-          <select name="outcome">
-            <option value="">— Upcoming —</option>
-            <option value="win">Win</option>
-            <option value="loss">Loss</option>
-            <option value="draw">Draw</option>
-          </select>
-        </label>
-        <button type="submit">Add Session</button>
-      </form>
+
+    <!-- WEEK CALENDAR -->
+    <section aria-labelledby="week-heading">
+      <div class="section-head">
+        <div class="title">
+          <span class="tick"></span>
+          <h2 id="week-heading">This Week</h2>
+        </div>
+        <span class="sub" id="week-range-label"></span>
+      </div>
+
+      <div class="week-card">
+        <div class="week-top">
+          <div class="month" id="week-month"></div>
+          <div class="week-nav">
+            <button id="btn-prev" aria-label="Previous week">&#8249;</button>
+            <button id="btn-today" class="today-btn">Today</button>
+            <button id="btn-next" aria-label="Next week">&#8250;</button>
+          </div>
+        </div>
+        <div class="week-grid" id="week-grid"></div>
+      </div>
     </section>
 
-    <section class="schedule-section">
-      <h2>Next 30 Days</h2>
-      <div id="schedule-list"></div>
-    </section>
+    <div class="columns">
+
+      <!-- ADD SESSION FORM -->
+      <section class="form-card">
+        <div class="fc-head">
+          <span class="tick"></span>
+          <h2>Add Session</h2>
+        </div>
+        <div class="form-body">
+          <form id="add-form">
+            <div class="row2">
+              <div class="field">
+                <label for="f-date">Date</label>
+                <input class="ctrl" type="date" id="f-date" name="date" required />
+              </div>
+              <div class="field">
+                <label for="f-time">Time</label>
+                <input class="ctrl" type="time" id="f-time" name="time" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-loc">Location</label>
+              <input class="ctrl" type="text" id="f-loc" name="location"
+                     placeholder="e.g. Sports Hall Court A" required />
+            </div>
+            <div class="row2">
+              <div class="field">
+                <label for="f-games">Games Target</label>
+                <input class="ctrl" type="number" id="f-games" name="gamesTarget"
+                       min="1" max="50" value="5" required />
+              </div>
+              <div class="field">
+                <label for="f-out">Outcome</label>
+                <select class="ctrl" id="f-out" name="outcome">
+                  <option value="">— Upcoming —</option>
+                  <option value="win">Win</option>
+                  <option value="loss">Loss</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-add" type="submit">&#xFF0B; Add Session</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- NEXT 30 DAYS -->
+      <section aria-labelledby="list-heading">
+        <div class="section-head">
+          <div class="title">
+            <span class="tick"></span>
+            <h2 id="list-heading">Next 30 Days</h2>
+          </div>
+          <span class="sub" id="list-count"></span>
+        </div>
+        <div class="list" id="schedule-list"></div>
+      </section>
+
+    </div>
   </main>
+
+  <footer class="foot">My Badminton Schedule · Match Tracker</footer>
 
   <script src="app.js"></script>
 </body>
