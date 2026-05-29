@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
       date:        form.date.value,
       time:        form.time.value,
       location:    form.location.value.trim(),
-      gamesTarget: parseInt(form.gamesTarget.value, 10),
+      gamesTarget: parseInt(form.gamesTarget.value, 10) || 1,
       outcome:     form.outcome.value
     };
 
